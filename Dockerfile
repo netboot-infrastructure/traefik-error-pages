@@ -1,4 +1,10 @@
 FROM docker.io/nginxinc/nginx-unprivileged:latest
 
-COPY ./default.conf /etc/nginx/conf.d/default.conf
-COPY ./html /usr/share/nginx/error-pages
+# Copy HTML files into Nginx default folder
+COPY html/ /usr/share/nginx/html/
+
+# Expose port 80
+EXPOSE 80
+
+# Default command to run Nginx in foreground
+CMD ["nginx", "-g", "daemon off;"]
